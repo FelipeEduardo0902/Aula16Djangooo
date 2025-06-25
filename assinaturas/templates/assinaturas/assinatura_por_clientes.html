@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Clientes da Assinatura: {{ assinatura.nome }}</h2>
+
+<ul class="list-group">
+    {% for cliente in assinatura.clientes.all %}
+    <li class="list-group-item">
+        {{ cliente.nome }} - {{ cliente.cpf }} - {{ cliente.email }}
+    </li>
+    {% empty %}
+    <li class="list-group-item">Nenhum cliente nesta assinatura.</li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'lista_assinaturas' %}" class="btn btn-secondary mt-3">Voltar</a>
+{% endblock %}

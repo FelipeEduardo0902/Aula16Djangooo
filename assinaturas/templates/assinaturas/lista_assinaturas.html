@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Lista de Assinaturas</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Mensalidade</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for assinatura in assinaturas %}
+        <tr>
+            <td>{{ assinatura.nome }}</td>
+            <td>R$ {{ assinatura.mensalidade }}</td>
+            <td>
+                <a href="{% url 'assinatura_por_clientes' assinatura.id %}" class="btn btn-sm btn-primary">Ver Clientes</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="3">Nenhuma assinatura encontrada.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="{% url 'nova_assinatura' %}" class="btn btn-success">Nova Assinatura</a>
+{% endblock %}
